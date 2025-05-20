@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 
 const ExpenseContext = createContext();
 
-const backendUrl = "http://localhost:5000"; // ✅ Ensure correct backend URL
+const backendUrl = import.meta.env.VITE_BACKEND_URL; // ✅ Ensure correct backend URL
 
 const expenseReducer = (state, action) => {
   switch (action.type) {
