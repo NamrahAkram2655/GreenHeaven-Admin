@@ -179,7 +179,7 @@ import { backendUrl } from "../../App";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { ExpenseContext } from "../../Context/ExpenseContext";
-
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 const Dashboard = () => {
   const [orders, setOrders] = useState(0);
   const [userCount, setUserCount] = useState(0);
@@ -201,14 +201,14 @@ const Dashboard = () => {
     } catch (error) {
       toast.error(
         "Error fetching orders: " +
-          (error?.response?.data?.error || error.message)
+        (error?.response?.data?.error || error.message)
       );
     }
   };
 
   const fetchUserCount = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/user/user-count");
+      const response = await axios.get(`${backendUrl}/api/user/user-count`);
       if (response.status === 200) {
         setUserCount(response.data.userCount);
       }

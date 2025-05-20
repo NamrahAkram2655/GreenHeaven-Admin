@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 
 const ExpenseContext = createContext();
 
-const backendUrl = "http://localhost:5000"; // ✅ Ensure correct backend URL
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 const expenseReducer = (state, action) => {
   switch (action.type) {
@@ -87,7 +87,7 @@ const ExpenseProvider = ({ children }) => {
     }
   };
 
-  
+
 
   const calculateIncome = () => {
     return state.transactions
@@ -125,10 +125,10 @@ const ExpenseProvider = ({ children }) => {
         updateExpense,
         deleteExpense,
         loading,
-        earned : calculateEarned(),
-        expense : calculateExpense(),
-        income : calculateIncome(),
-        revenue : calculateRevenue(),
+        earned: calculateEarned(),
+        expense: calculateExpense(),
+        income: calculateIncome(),
+        revenue: calculateRevenue(),
       }}
     >
       {children}
@@ -138,4 +138,4 @@ const ExpenseProvider = ({ children }) => {
 
 ExpenseProvider.propTypes = { children: PropTypes.node.isRequired };
 
-export {ExpenseContext, ExpenseProvider};
+export { ExpenseContext, ExpenseProvider };
